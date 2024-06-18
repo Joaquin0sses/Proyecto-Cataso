@@ -13,11 +13,13 @@
                 $("#conductores tbody").append(
                     `<tr>
                         <td><input class="form-check-input" type="checkbox"></td>
-                        <td>${datos.conductor}</td>
-                        <td>${datos.edad}</td>
-                        <td>${datos.licencia}</td>
-                        <td>${datos.costo_asociado}</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                        <td>${datos.modelo}</td>
+                        <td>${datos.patente}</td>
+                        <td>${datos.kilometraje}</td>
+                        <td>${datos.capacidad_personas}</td>
+                        <td>${datos.capacidad_transporte}</td>
+                        <td>${datos.estado}</td>
+                        
                     </tr>`
                 );
                 // Limpiar el localStorage
@@ -26,7 +28,7 @@
 
             // Redirigir al formulario
             $("#agregar").click(function(){
-                window.location.href = 'agregar_conductor.html';
+                window.location.href = 'agregar_vehiculos.html';
             });
         });
     </script>
@@ -211,60 +213,124 @@
 
                     </div>
                     
-                        <div class="col-12">
-                            <div class="bg-light rounded h-100 p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h6 class="mb-0">Vehiculos</h6>
-                                    <a href="">Mostrar todo</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Modelo de vehiculo</th>
-                                                <th scope="col">Patente</th>
-                                                <th scope="col">Kilometraje</th>
-                                                <th scope="col">Capacidad de personas</th>
-                                                <th scope="col">Capacidad de transporte</th>
-                                                <th scope="col">Estado</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Camión New Delivery 6.160 | Volkswagen</td>
-                                                <td>BB-10-15</td>
-                                                <td>400 Km</td>
-                                                <td>4</td>
-                                                <td>6,300 Kg</td>
-                                                <td>En viaje</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Camión New Delivery 11.180 | VW</td>
-                                                <td>RT-10-45</td>
-                                                <td>80 Km</td>
-                                                <td>4</td>
-                                                <td>10,700 Kg</td>
-                                                <td>Libre</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Camión E-Delivery 11 | Eficiencia Eléctrica</td>
-                                                <td>CR-68-30</td>
-                                                <td>200 Km</td>
-                                                <td>2</td>
-                                                <td>11,400 Kg</td>
-                                                <td>En viaje</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                    <div class="bg-light text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">Conductores</h6>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0" id="conductores">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th scope="col"></th>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Patente</th>
+                                        <th scope="col">kilometraje</th>
+                                        <th scope="col">Capacidad de personas</th>
+                                        <th scope="col">Capacidad de transporte</th>
+                                        <th scope="col">Patente</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Jhon Doe</h6>
+                                                    
+                                                </div>
+                                                <span>Short message goes here...</span>
+                                            </div>
+                                        </div></td>
+                                        <td>38</td>
+                                        <td>Type of license goes here...</td>
+                                        <td>...$</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Jhon Doe</h6>
+                                                    
+                                                </div>
+                                                <span>Short message goes here...</span>
+                                            </div>
+                                        </div></td>
+                                        <td>40</td>
+                                        <td>Type of license goes here...</td>
+                                        <td>...$</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Jhon Doe</h6>
+                                                    
+                                                </div>
+                                                <span>Short message goes here...</span>
+                                            </div>
+                                        </div></td>
+                                        <td>45</td>
+                                        <td>Type of license goes here...</td>
+                                        <td>...$</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Jhon Doe</h6>
+                                                    
+                                                </div>
+                                                <span>Short message goes here...</span>
+                                            </div>
+                                        </div></td>
+                                        <td>53</td>
+                                        <td>Type of license goes here...</td>
+                                        <td>...$</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Jhon Doe</h6>
+                                                    
+                                                </div>
+                                                <span>Short message goes here...</span>
+                                            </div>
+                                        </div></td>
+                                        <td>50</td>
+                                        <td>Type of license goes here...</td>
+                                        <td>...$</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a class="btn btn-sm btn-primary" id="agregar">Agregar vehículo</a>
+                    </div>
+                            
                         </div>
                         <!-- Widgets End -->
-
+                        
 
                         <!-- Footer Start -->
                         <div class="container-fluid pt-4 px-4">
