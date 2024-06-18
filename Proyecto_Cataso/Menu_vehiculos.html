@@ -29,6 +29,58 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Verificar si hay datos en el localStorage al cargar la página
+            const datos = JSON.parse(localStorage.getItem('nuevaFila'));
+            if (datos) {
+                // Añadir la nueva fila a la tabla
+                $("#vehiculos tbody").append(
+                    `<tr>
+                        
+                        <td>${datos.modelo}</td>
+                        <td>${datos.patente}</td>
+                        <td>${datos.kilometraje}</td>
+                        <td>${datos.capacidad_p}</td>
+                        <td>${datos.capacidad_t}</td>
+                        <td>${datos.estado}</td>
+                        
+                    </tr>`
+                );
+                // Limpiar el localStorage
+                localStorage.removeItem('nuevaFila');
+            }
+
+            // Redirigir al formulario
+            $("#agregar").click(function(){
+                window.location.href = 'agregar_conductor.html';
+            });
+        });
+    </script>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
 </head>
 
 <body>
@@ -275,58 +327,88 @@
 
                 <br></br>
                 <!-- Widgets End -->
-                <div class="col-12">
-                    <div class="bg-light rounded h-100 p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <h6 class="mb-0">Vehiculos</h6>
-                            <a href="">Mostrar todo</a>
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-light text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h6 class="mb-0">Conductores</h6>
                         </div>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0" id="conductores">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Modelo de vehiculo</th>
+                                    <tr class="text-dark">
+                                        <th scope="col"></th>
+                                        <th scope="col">Modelo</th>
                                         <th scope="col">Patente</th>
                                         <th scope="col">Kilometraje</th>
-                                        <th scope="col">Capacidad de personas</th>
+                                        <th scope="col">capacidad de personas</th>
                                         <th scope="col">Capacidad de transporte</th>
-                                        <th scope="col">Estado</th>
+                                        <th scope="col">estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Camión New Delivery 6.160 | Volkswagen</td>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Camión New Delivery 6.160 | Volkswagen</h6>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div></td>
                                         <td>BB-10-15</td>
-                                        <td>400 Km</td>
+                                        <td>400 Km.</td>
                                         <td>4</td>
                                         <td>6,300 Kg</td>
-                                        <td>En viaje</td>
+                                        <td> Libre </td>
+
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Camión New Delivery 11.180 | VW</td>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                           
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Camión New Delivery 11.180 | VW</h6>
+                                                    
+                                                </div>
+                                               
+                                            </div>
+                                        </div></td>
                                         <td>RT-10-45</td>
-                                        <td>80 Km</td>
+                                        <td>80 Km.</td>
                                         <td>4</td>
                                         <td>10,700 Kg</td>
-                                        <td>Libre</td>
+                                        <td> en viaje</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td>Camión E-Delivery 11 | Eficiencia Eléctrica</td>
+                                        <td><input class="form-check-input" type="checkbox"></td>
+                                        <td><div class="d-flex align-items-center">
+                                            
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">Camión E-Delivery 11 | Eficiencia Eléctrica</h6>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div></td>
                                         <td>CR-68-30</td>
                                         <td>200 Km</td>
                                         <td>2</td>
                                         <td>11,400 Kg</td>
-                                        <td>En viaje</td>
+                                        <td>en viaje</td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <a class="btn btn-sm btn-primary" id="agregar">Agregar Vehiculo</a>
                 </div>
+                
             </div>
         </div>
     </div>
