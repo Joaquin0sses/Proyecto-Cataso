@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Location Map with Route Optimization</title>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 100%;
+        }
+        /* The html and body elements need height and no margin or padding */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        var map, directionsService, directionsRenderer;
+
+        // Initialize and add the map
+        function initMap() {
+            // Create the map, centered at an arbitrary location initially
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: {lat: -34.397, lng: 150.644}
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+
+            directionsRenderer.setMap(map);
+
+            // Try HTML5 geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Create a marker and set its position.
+                    var marker = new google.maps.Marker({
+                        position: pos,
+                        map: map
+                    });
+
+                    map.setCenter(pos);
+
+                    // Example route: User's location to a couple of other points
+                    var waypoints = [
+                        { location: {lat: -33.867, lng: 151.206}, stopover: true },
+                        { location: {lat: -35.308, lng: 149.124}, stopover: true }
+                    ];
+
+                    calculateAndDisplayRoute(pos, waypoints);
+                }, function() {
+                    handleLocationError(true, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, map.getCenter());
+            }
+        }
+
+        function calculateAndDisplayRoute(start, waypoints) {
+            var request = {
+                origin: start,
+                destination: waypoints[waypoints.length - 1].location,
+                waypoints: waypoints.slice(0, -1),
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+            };
+
+            directionsService.route(request, function(response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+        function handleLocationError(browserHasGeolocation, pos) {
+            var infoWindow = new google.maps.InfoWindow;
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1XFUG4cI94Kdq36I_lWHhz3FJNSNCPgg&callback=initMap">
+    </script>
+</body>
+</html>
