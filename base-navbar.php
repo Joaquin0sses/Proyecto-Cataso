@@ -1,4 +1,4 @@
-<body>
+
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner"
@@ -13,16 +13,15 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a href="index.php" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary">Logistica Cataso</h3>
                 </a>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-house-door-fill"></i>Home</a>
-                    <a href="Conductores.html" class="nav-item nav-link"><i class="bi bi-person-fill"></i>Conductores</a>
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-folder-fill"></i>Historial</a>
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-pie-chart-fill"></i>Finanzas</a>
-                    <a href="Menu_vehiculos.html" class="nav-item nav-link"><i class="bi bi-truck"></i>Vehiculos</a>
-                    <a href="Gestor_de_rutas.html" class="nav-item nav-link"><i class="bi bi-truck"></i>Gestor de
+                    <a href="index.php" class="nav-item nav-link"><i class="bi bi-house-door-fill"></i>Home</a>
+                    <a href="Conductores.php" class="nav-item nav-link"><i class="bi bi-person-fill"></i>Conductores</a>
+                    <a href="finanza.php" class="nav-item nav-link"><i class="bi bi-pie-chart-fill"></i>Finanzas</a>
+                    <a href="Menu_vehiculos.php" class="nav-item nav-link"><i class="bi bi-truck"></i>Vehiculos</a>
+                    <a href="Gestor_de_rutas.php" class="nav-item nav-link"><i class="bi bi-truck"></i>Gestor de
                         rutas</a>
                 </div>
             </nav>
@@ -41,9 +40,7 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
-                </form>
+                
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -52,39 +49,33 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
+                                <div class="d-flex align-items-center">                                  
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
+                                        <h6 class="fw-normal mb-0">Conductor manuel envio un reporte</h6>
+                                        <small>Hace 20 minutos</small>
                                     </div>
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
+                                        <h6 class="fw-normal mb-0">Conductor Rodrigo envio un reporte</h6>
+                                        <small>Hace 15 minutos</small>
                                     </div>
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
-                                        style="width: 40px; height: 40px;">
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
+                                        <h6 class="fw-normal mb-0">Conductor Juan envio un reporte</h6>
+                                        <small>Hace 10 minutos</small>
                                     </div>
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
+                            <a href="#" class="dropdown-item text-center">Ver todos los mensajes</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -94,34 +85,30 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
+                                <h6 class="fw-normal mb-0">Conductor actualizado</h6>
+                                <small>Hace 15 minutos</small>
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
+                                <h6 class="fw-normal mb-0">Nuevo auto añadido</h6>
+                                <small>Hace 10 minutos</small>
                             </a>
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                            <a href="#" class="dropdown-item text-center">Ver todas las notificaciones</a>
                         </div>
                     </div>
+                    <?php
+                    session_start();
+                    $user=$_SESSION['nombre_usuario'];
+                    ?>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
-                                style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Admin</span>
+                            <span class="d-none d-lg-inline-flex"> <?= $user ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="signin.html" class="dropdown-item">Iniciar Session</a>
-                            <a href="signup.html" class="dropdown-item">Registrarse</a>
+                            <a href="cerrar-sesion.php" class="dropdown-item">Cerrar Sesion</a>
                         </div>
                     </div>
                 </div>
             </nav>
-            <!-- Navbar End -->
+           <!-- Navbar End -->

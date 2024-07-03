@@ -2,6 +2,12 @@
 <html lang="es">
 
 <head>
+
+    <?php
+    
+    require 'base-paginas.php';
+
+    ?>
     <meta charset="utf-8">
     <title>Lista de Conductores</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,35 +38,9 @@
 </head>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-        <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-light navbar-light">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary">Logistica Cataso</h3>
-                </a>
-                <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-house-door-fill"></i>Home</a>
-                    <a href="Conductores.html" class="nav-item nav-link"><i class="bi bi-person-fill"></i>Conductores</a>
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-folder-fill"></i>Historial</a>
-                    <a href="index.html" class="nav-item nav-link"><i class="bi bi-pie-chart-fill"></i>Finanzas</a>
-                    <a href="Menu_vehiculos.html" class="nav-item nav-link"><i class="bi bi-truck"></i>Vehiculos</a>
-                    <a href="Gestor_de_rutas.html" class="nav-item nav-link"><i class="bi bi-truck"></i>Gestor de rutas</a>
-                </div>
-            </nav>
-        </div>
-        <!-- Sidebar End -->
-
-        <!-- Content Start -->
-        <div class="content">
+    <?php 
+    include 'base-navbar.php'; 
+    ?>
             <!-- Conductores Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
@@ -68,7 +48,7 @@
                         <h6 class="text-primary">Lista de Conductores</h6>
                     </div>
                     <div class="table-responsive">
-                        <ul id="ConductorList"></ul>
+                        <ol id="ConductorList"></ol>
                         <button class="btn btn-sm btn-primary" onclick="window.location.href='agregar_conductor.html'">Agregar Nuevo Conductor</button>
                         <button class="btn btn-sm btn-primary" id="deleteSelected">Eliminar Seleccionados</button>
                         <script src="script_Cond.js"></script>

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host = '34.67.116.97';
 $db = 'Database';
 $user = 'postgres';
@@ -18,13 +22,20 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-// Ruta para obtener todos los items
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['Conductor'])) {
-    $stmt = $pdo->query('SELECT id, nombre, edad FROM Conductor');
+// Asegurarse de que REQUEST_METHOD esté definido
+if (!isset($_SERVER['REQUEST_METHOD'])) {
+    echo 'No request method specified';
+    exit;
+}
+
+// Ruta para obtener todos los conductores
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getConductor'])) {
+    $stmt = $pdo->query('SELECT id_conductor, nombre, edad FROM Conductor');
     $Conductor = $stmt->fetchAll();
     echo json_encode($Conductor);
     exit;
 }
+
 
 // Ruta para obtener un item por ID
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
@@ -37,15 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 }
 
 // Ruta para agregar un nuevo item
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nombre'], $_POST['edad'], $_POST['description'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_conductor'], $_POST['nombre'], $_POST['id_licencia'], $_POST['edad'], $_POST['description'])) {
+    $id_conductor = $_POST['id_conductor'];
     $nombre = $_POST['nombre'];
+    $id_licencia = $_POST['id_licencia'];
     $edad = $_POST['edad'];
     $description = $_POST['description'];
-    $stmt = $pdo->prepare('INSERT INTO Conductor (nombre, edad, description) VALUES (?, ?, ?)');
-    $stmt->execute([$nombre, $edad, $description]);
-    $id = $pdo->lastInsertId();
-    $newItem = ['id' => $id, 'nombre' => $nombre, 'edad' => $edad, 'description' => $description];
-    echo json_encode($newItem);
+    $stmt = $pdo->prepare('INSERT INTO Conductor (id_conductor, nombre, id_licencia, edad, description) VALUES (?, ?, ?, ?, ?)');
+    $stmt->execute([$id_conductor, $nombre, $id_licencia, $edad, $description]);
+    $newConductor = ['id_conductor' => $id_conductor, 'nombre' => $nombre, 'id_licencia' => $id_licencia, 'edad' => $edad, 'description' => $description];
+    echo json_encode($newConductor);
     exit;
 }
 
