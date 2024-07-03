@@ -19,12 +19,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const viewButton = document.createElement('button');
                 viewButton.textContent = 'Ver Perfil';
+                viewButton.classList.add('btn', 'btn-sm', 'btn-primary');
                 viewButton.addEventListener('click', () => {
-                    window.location.href = `profile.html?id=${Conductor.id_conductor}`;
+                    window.location.href = `profile.php?id=${Conductor.id_conductor}`;
                 });
 
                 listConductor.appendChild(checkbox);
-                listConductor.appendChild(document.createTextNode(`${Conductor.id_conductor} - ${Conductor.nombre} - ${Conductor.edad}`));
+                listConductor.appendChild(document.createTextNode(`${Conductor.id_conductor} - ${Conductor.nombre} - ${Conductor.edad} - `));
                 listConductor.appendChild(viewButton);
                 ConductorList.appendChild(listConductor);
             });
@@ -40,16 +41,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     deleteSelectedButton.addEventListener('click', async () => {
         const selectedConductor = document.querySelectorAll('.itemCheckbox:checked');
     
-        const idsToDelete = Array.from(selectedConductor).map(checkbox => checkbox.closest('li').dataset.id);
+        const idsToDelete = Array.from(selectedConductor).map(checkbox => checkbox.closest('LI').dataset.id);
 
         try {
-            await Promise.all(idsToDelete.map(async id_conductor => {
-                const response = await fetch(`api.php?id=${id_conductor}`, {
+            await Promise.all(idsToDelete.map(async id => {
+                const response = await fetch(`api_cond.php?id=${id}`, {
                     method: 'DELETE',
                 });
 
                 if (response.ok) {
-                    const listConductor = document.querySelector(`li[data-id='${id_conductor}']`);
+                    const listConductor = document.querySelector(`li[data-id='${id}']`);
                     listConductor.remove();
                 } else {
                     console.error('Error al eliminar el conductor:', await response.json());

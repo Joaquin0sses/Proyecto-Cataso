@@ -2,20 +2,14 @@
 <html lang="es">
 
 <head>
-
     <?php
-    
     require 'base-paginas.php';
-
     ?>
     <meta charset="utf-8">
     <title>Lista de Conductores</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,27 +35,24 @@
     <?php 
     include 'base-navbar.php'; 
     ?>
-            <!-- Conductores Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="text-primary">Lista de Conductores</h6>
-                    </div>
-                    <div class="table-responsive">
-                        <ol id="ConductorList"></ol>
-                        <button class="btn btn-sm btn-primary" onclick="window.location.href='agregar_conductor.html'">Agregar Nuevo Conductor</button>
-                        <button class="btn btn-sm btn-primary" id="deleteSelected">Eliminar Seleccionados</button>
-                        <script src="script_Cond.js"></script>
-                    </div>
+    <!-- Content start -->
+    <!-- Conductores Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-light text-left rounded p-4">
+                <h6 class="text-primary">Lista de Conductores</h6>
+                <div class="table-responsive">
+                    <ol id="ConductorList"></ol>
+                    <button class="btn btn-sm btn-primary" onclick="window.location.href='agregar_conductor.html'">Agregar Nuevo Conductor</button>
+                    <button class="btn btn-sm btn-primary" id="deleteSelected">Eliminar Seleccionados</button>
+                    <script src="script_Cond.js"></script>
                 </div>
             </div>
-            <!-- Conductores End -->
         </div>
-        <!-- Content End -->
+    <!-- Conductores End -->
+    <!-- Content End -->
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
