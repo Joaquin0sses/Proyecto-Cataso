@@ -25,10 +25,10 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -61,7 +61,16 @@
                                 <input type="password" name="pass" class="form-control" id="floatingPassword" placeholder="Password">
                                 <label for="floatingPassword">Contraseña</label>
                             </div>
+                            <h4 class="text-danger" >
+                            <?php
+                            if (isset($_GET['mensaje'])) {
+                                echo "<div>". htmlspecialchars($_GET['mensaje']) . "</div>";
+                            }
+                            ?>
+                            </h4>
+
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Iniciar sesión</button>
+
                         </form>
                         
                     </div>
@@ -83,7 +92,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

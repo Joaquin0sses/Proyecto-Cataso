@@ -65,15 +65,11 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Lista de Conductores</h6>
+                        <h6 class="text-primary">Lista de Conductores</h6>
                     </div>
                     <div class="table-responsive">
                         <ul id="ConductorList"></ul>
-                        <form id="addConductorForm">
-                            <input type="text" id="ConductorNombre" placeholder="Nuevo Conductor" required>
-                            <input type="number" id="EdadConductor" placeholder="Edad" required>
-                            <button class="btn btn-sm btn-primary" type="submit">Agregar</button>
-                        </form>
+                        <button class="btn btn-sm btn-primary" onclick="window.location.href='agregar_conductor.html'">Agregar Nuevo Conductor</button>
                         <button class="btn btn-sm btn-primary" id="deleteSelected">Eliminar Seleccionados</button>
                         <script src="script_Cond.js"></script>
                     </div>
