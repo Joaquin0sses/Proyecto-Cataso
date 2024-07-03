@@ -32,11 +32,11 @@ app.get('/api/Conductor', async (req, res) => {
 app.post('/api/Conductor', async (req, res) => {
     const { Nombre, Edad } = req.body;
     try {
-      const result = await pool.query('INSERT INTO Conductor (Nombre) VALUES ($1) RETURNING *', [Nombre]);
+      const result = await pool.query('INSERT INTO Conductor (Nombre, Edad) VALUES ($1, $2) RETURNING *', [Nombre, Edad]);
       res.status(201).json(result.rows[0]);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Error al agregar el dato' });
+      res.status(500).json({ error: 'Error al agregar los datos' });
     }
   });
 

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ConductorList = document.getElementById('ConductorList');
     const addConductorForm = document.getElementById('addConductorForm');
     const ConductorNameInput = document.getElementById('ConductorName');
+    const EdadInput = document.getElementById('EdadConductor');
   
     // Función para obtener y mostrar los Conductores
     async function loadConductor() {
@@ -27,23 +28,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         event.preventDefault();
 
         const newConductorName = ConductorNameInput.value.trim();
+        const newEdad = EdadInput.value;
 
-        if (newConductorName) {
+        if (newConductorName && newEdad) {
             try {
                 const response = await fetch('http://localhost:3000/api/Conductor', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name: newConductorName }),
+                    body: JSON.stringify({ name: newConductorName, edad: newEdad }),
                 });
 
                 if (response.ok) {
                     const newConductor = await response.json();
                     const listConductor = document.createElement('li');
-                    listConductor.textContent = newConductor.name;
+                    listConductor.textContent = '${newConductor.name} - ${newConductor.edad}';
                     ConductorList.appendChild(listConductor);
                     ConductorNameInput.value = '';
+                    EdadInput.value = '';
                 } else {
                     console.error('Error al agregar el Conductor:', await response.json());
                 }
