@@ -20,26 +20,14 @@ const pool = new Pool({
     },
 });
 
-// Create table if it doesn't exist
-pool.query(`
-    CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(100),
-        email VARCHAR(100)
-    )
-`, (err, res) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('Table is successfully created');
-    }
-});
+
+
 
 // API endpoint to handle form submission
 app.post('/submit', (req, res) => {
     const { name, email } = req.body;
 
-    pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
+    pool.query('INSERT INTO finanzas (gastos) VALUES ($1) RETURNING *', [name], (error, results) => {
         if (error) {
             res.status(500).send('Error saving to database');
         } else {
@@ -49,5 +37,5 @@ app.post('/submit', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://your-server-domain:${port}/`);
+    console.log(`Server running at http://34.67.116.97:${port}/`);
 });

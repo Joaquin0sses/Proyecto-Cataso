@@ -8,12 +8,10 @@
 <body>
     <h1>Input Form</h1>
     <form id="inputForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="name">Costo generado:</label>
+        <input type="number" id="Costo_generado" name="Costo_generado" required>
         <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
+        
         <button type="submit">Submit</button>
     </form>
 
@@ -21,12 +19,12 @@
         document.getElementById('inputForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            const Costo_generado = document.getElementById('Costo_generado').value;
+            
 
-            const data = { name, email };
+            const data = { Costo_generado };
 
-            fetch('http://your-server-domain:3000/submit', {
+            fetch('http://34.67.116.97:3000/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
