@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     deleteSelectedButton.addEventListener('click', async () => {
         const selectedVehiculo = document.querySelectorAll('.itemCheckbox:checked');
     
-        const idsToDelete = Array.from(selectedVehiculo).map(checkbox => checkbox.closest('LI').dataset.id);
+        const idsToDelete = Array.from(selectedVehiculo).map(checkbox => checkbox.closest('tr').dataset.id);
 
         try {
             await Promise.all(idsToDelete.map(async id => {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 if (response.ok) {
-                    const listVehiculo = document.querySelector(`li[data-id='${id}']`);
+                    const listVehiculo = document.querySelector(`tr[data-id='${id}']`);
                     listVehiculo.remove();
                 } else {
                     console.error('Error al eliminar el Vehiculo:', await response.json());

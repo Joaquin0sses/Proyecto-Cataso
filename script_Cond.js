@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     deleteSelectedButton.addEventListener('click', async () => {
         const selectedConductor = document.querySelectorAll('.itemCheckbox:checked');
     
-        const idsToDelete = Array.from(selectedConductor).map(checkbox => checkbox.closest('LI').dataset.id);
+        const idsToDelete = Array.from(selectedConductor).map(checkbox => checkbox.closest('tr').dataset.id);
 
         try {
             await Promise.all(idsToDelete.map(async id => {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 if (response.ok) {
-                    const listConductor = document.querySelector(`li[data-id='${id}']`);
+                    const listConductor = document.querySelector(`tr[data-id='${id}']`);
                     listConductor.remove();
                 } else {
                     console.error('Error al eliminar el conductor:', await response.json());
