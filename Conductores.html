@@ -8,35 +8,6 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- J Query -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Verificar si hay datos en el localStorage al cargar la página
-            const datos = JSON.parse(localStorage.getItem('nuevaFila'));
-            if (datos) {
-                // Añadir la nueva fila a la tabla
-                $("#conductores tbody").append(
-                    `<tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>${datos.conductor}</td>
-                        <td>${datos.edad}</td>
-                        <td>${datos.licencia}</td>
-                        <td>${datos.costo_asociado}</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                    </tr>`
-                );
-                // Limpiar el localStorage
-                localStorage.removeItem('nuevaFila');
-            }
-
-            // Redirigir al formulario
-            $("#agregar").click(function(){
-                window.location.href = 'agregar_conductor.html';
-            });
-        });
-    </script>
-
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -97,111 +68,17 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Conductores</h6>
+                        <h6 class="mb-0">Lista de Conductores</h6>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0" id="conductores">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col"></th>
-                                    <th scope="col">Conductor</th>
-                                    <th scope="col">Edad</th>
-                                    <th scope="col">Licencia</th>
-                                    <th scope="col">Costo asociado</th>
-                                    <th scope="col">Descripción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td><div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>15 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div></td>
-                                    <td>38</td>
-                                    <td>Type of license goes here...</td>
-                                    <td>...$</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td><div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>20 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div></td>
-                                    <td>40</td>
-                                    <td>Type of license goes here...</td>
-                                    <td>...$</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td><div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>35 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div></td>
-                                    <td>45</td>
-                                    <td>Type of license goes here...</td>
-                                    <td>...$</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td><div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>55 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div></td>
-                                    <td>53</td>
-                                    <td>Type of license goes here...</td>
-                                    <td>...$</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td><div class="d-flex align-items-center">
-                                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>1 hour ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div></td>
-                                    <td>50</td>
-                                    <td>Type of license goes here...</td>
-                                    <td>...$</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ul id="ConductorList"></ul>
+                        <form id="addConductorForm">
+                            <input type="text" id="ConductorName" placeholder="Nuevo Conductor" required>
+                            <button type="submit">Agregar</button>
+                        </form>
+                        <script src="script_Cond.js"></script>
                     </div>
                 </div>
-                <a class="btn btn-sm btn-primary" id="agregar">Agregar conductor</a>
             </div>
             <!-- Conductores End -->
         </div>
