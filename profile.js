@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const profileDiv = document.getElementById('profile');
     const urlParams = new URLSearchParams(window.location.search);
-    const itemId = urlParams.get('id');
+    const ConductorId = urlParams.get('id_conductor');
   
     // Función para obtener y mostrar el perfil del item
     async function loadProfile() {
       try {
-        const response = await fetch(`http://localhost:3000/api/items/${itemId}`);
+        const response = await fetch(`http://localhost:3000/api/Conductor/${Id_conductor}`);
         if (response.ok) {
-          const item = await response.json();
+          const Conductor = await response.json();
           profileDiv.innerHTML = `
-            <p>ID: ${item.id}</p>
-            <p>Nombre: ${item.name}</p>
+            <p>ID: ${Conductor.Id_conductor}</p>
+            <p>Nombre: ${Conductor.nombre}</p>
             <p>Fecha de Nacimiento: ${item.birth_date}</p>
           `;
         } else {
