@@ -28,11 +28,11 @@ if (!isset($_SERVER['REQUEST_METHOD'])) {
     exit;
 }
 
-// Ruta para obtener todos los conductores
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getConductor'])) {
-    $stmt = $pdo->query('SELECT id_conductor, nombre, edad, costo FROM Conductor');
-    $Conductor = $stmt->fetchAll();
-    echo json_encode($Conductor);
+// Ruta para obtener todos los vehiculos
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getvehiculo'])) {
+    $stmt = $pdo->query('SELECT id_vehiculo, kilometros_recorridos, id_tipo_de_vehiculo FROM vehiculo');
+    $vehiculo = $stmt->fetchAll();
+    echo json_encode($vehiculo);
     exit;
 }
 
@@ -40,31 +40,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getConductor'])) {
 // Ruta para obtener un item por ID
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = (int) $_GET['id'];
-    $stmt = $pdo->prepare('SELECT * FROM Conductor WHERE id_conductor = ?');
+    $stmt = $pdo->prepare('SELECT * FROM vehiculo WHERE id_vehiculo = ?');
     $stmt->execute([$id]);
-    $Conductor = $stmt->fetch();
-    echo json_encode($Conductor);
+    $vehiculo = $stmt->fetch();
+    echo json_encode($vehiculo);
     exit;
 }
 
 // Ruta para agregar un nuevo item
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_conductor'], $_POST['nombre'], $_POST['id_licencia'], $_POST['edad'], $_POST['costo'],  $_POST['description'])) {
-    $id_conductor = $_POST['id_conductor'];
-    $nombre = $_POST['nombre'];
-    $id_licencia = $_POST['id_licencia'];
-    $edad = $_POST['edad'];
-    $costo = $_POST['costo'];
-    $description = $_POST['description'];
-    $stmt = $pdo->prepare('INSERT INTO Conductor (id_conductor, nombre, id_licencia, edad, costo,  description) VALUES (?, ?, ?, ?, ?, ?)');
-    $stmt->execute([$id_conductor, $nombre, $id_licencia, $edad, $costo, $description]);
-    header('Location: Conductores.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_vehiculo'], $_POST['kilometros_recorridos'], $_POST['id_tipo_de_vehiculo'])) {
+    $id_vehiculo = $_POST['id_vehiculo'];
+    $kilometros_recorridos = $_POST['kilometros_recorridos'];
+    $id_tipo_de_vehiculo = $_POST['id_tipo_de_vehiculo'];
+    $stmt = $pdo->prepare('INSERT INTO vehiculo (id_vehiculo, kilometros_recorridos, id_tipo_de_vehiculo) VALUES (?, ?, ?)');
+    $stmt->execute([$id_vehiculo, $kilometros_recorridos, $id_tipo_de_vehiculo]);
+    header('Location: Menu_vehiculos.php');
     exit;
 }
 
 // Ruta para eliminar un item por ID
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['id'])) {
     $id = (int) $_GET['id'];
-    $stmt = $pdo->prepare('DELETE FROM Conductor WHERE id_conductor = ?');
+    $stmt = $pdo->prepare('DELETE FROM vehiculo WHERE id_vehiculo = ?');
     $stmt->execute([$id]);
     echo json_encode(['success' => true]);
     exit;

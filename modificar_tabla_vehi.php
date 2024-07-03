@@ -11,7 +11,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Consulta SQL para modificar la tabla
-    $sql = "ALTER TABLE Conductor ADD COLUMN costo TEXT";
+    $sql = "ALTER TABLE vehiculo ADD COLUMN description TEXT";
 
     // Ejecutar la consulta
     $conn->exec($sql);

@@ -2,37 +2,81 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ConductorList = document.getElementById('ConductorList');
     const deleteSelectedButton = document.getElementById('deleteSelected');
 
-    // Función para obtener y mostrar los Conductores
-    async function loadConductor() {
-        try {
-            const response = await fetch('api_cond.php?getConductor=true');
-            const Conductor = await response.json();
+   // Función para obtener y mostrar los Conductores
+   async function loadConductor() {
+    try {
+        const response = await fetch('api_cond.php?getConductor=true');
+        const Conductores = await response.json();
 
-            ConductorList.innerHTML = '';
-            Conductor.forEach(Conductor => {
-                const listConductor = document.createElement('LI');
-                listConductor.dataset.id = Conductor.id_conductor;
+        ConductorList.innerHTML = '';
 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.classList.add('itemCheckbox');
+        // Crear la tabla
+        const table = document.createElement('table');
+        table.classList.add('table', 'table-bordered');
 
-                const viewButton = document.createElement('button');
-                viewButton.textContent = 'Ver Perfil';
-                viewButton.classList.add('btn', 'btn-sm', 'btn-primary');
-                viewButton.addEventListener('click', () => {
-                    window.location.href = `profile.php?id=${Conductor.id_conductor}`;
-                });
+        // Crear los encabezados de la tabla
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const headers = ['Seleccionar', 'ID Conductor', 'Nombre', 'Edad', 'Costo', 'Acción'];
 
-                listConductor.appendChild(checkbox);
-                listConductor.appendChild(document.createTextNode(`${Conductor.id_conductor} - ${Conductor.nombre} - ${Conductor.edad} - `));
-                listConductor.appendChild(viewButton);
-                ConductorList.appendChild(listConductor);
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Crear el cuerpo de la tabla
+        const tbody = document.createElement('tbody');
+
+        Conductores.forEach(Conductor => {
+            const row = document.createElement('tr');
+            row.dataset.id = Conductor.id_conductor;
+
+            const checkboxCell = document.createElement('td');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.classList.add('itemCheckbox');
+            checkboxCell.appendChild(checkbox);
+            row.appendChild(checkboxCell);
+
+            const idCell = document.createElement('td');
+            idCell.textContent = Conductor.id_conductor;
+            row.appendChild(idCell);
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = Conductor.nombre;
+            row.appendChild(nameCell);
+
+            const ageCell = document.createElement('td');
+            ageCell.textContent = Conductor.edad;
+            row.appendChild(ageCell);
+
+            const costCell = document.createElement('td');
+            costCell.textContent = Conductor.costo;
+            row.appendChild(costCell);
+
+            const actionCell = document.createElement('td');
+            const viewButton = document.createElement('button');
+            viewButton.textContent = 'Ver Perfil';
+            viewButton.classList.add('btn', 'btn-sm', 'btn-primary');
+            viewButton.addEventListener('click', () => {
+                window.location.href = `profile.php?id=${Conductor.id_conductor}`;
             });
-        } catch (error) {
-            console.error('Error al obtener los conductores:', error);
-        }
+            actionCell.appendChild(viewButton);
+            row.appendChild(actionCell);
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        ConductorList.appendChild(table);
+    } catch (error) {
+        console.error('Error al obtener los conductores:', error);
     }
+}
 
     // Cargar los items inicialmente
     loadConductor();

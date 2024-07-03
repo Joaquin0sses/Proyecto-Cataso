@@ -1,21 +1,18 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const profileDiv = document.getElementById('profile');
+    const profileDiv = document.getElementById('profile_vehi');
     const urlParams = new URLSearchParams(window.location.search);
     const Id = urlParams.get('id');
   
     // Función para obtener y mostrar el perfil del item
     async function loadProfile() {
       try {
-        const response = await fetch(`api_cond.php?id=${Id}`);
+        const response = await fetch(`api_vehi.php?id=${Id}`);
         if (response.ok) {
-          const Conductor = await response.json();
+          const vehiculo = await response.json();
           profileDiv.innerHTML = `
-            <p>ID: ${Conductor.id_conductor}</p>
-            <p>Nombre: ${Conductor.nombre}</p>
-            <p>Licencia: ${Conductor.id_licencia}</p>
-            <p>Edad: ${Conductor.edad}</p>
-            <p>Costo: ${Conductor.costo}</p>
-            <p>Descripción: ${Conductor.description}</p>
+            <p>ID: ${vehiculo.id_vehiculo}</p>
+            <p>Kilometros recorridos: ${vehiculo.kilometros_recorridos}</p>
+            <p>Tipo de vehiculo: ${vehiculo.id_tipo_de_vehiculo}</p>
           `;
         } else {
           profileDiv.innerHTML = '<p>Error al obtener el perfil</p>';

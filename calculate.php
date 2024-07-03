@@ -15,6 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Realiza cualquier procesamiento necesario en el servidor aquí
 
     // Redirigir de vuelta a la página principal
-    header("Location: Gestor-de-rutas2.php?origin=" . urlencode($origin) . "&destination=" . urlencode($destination));
+    header("Location: Gestor-de-rutas.php?origin=" . urlencode($origin) . "&destination=" . urlencode($destination));
     exit();
 }

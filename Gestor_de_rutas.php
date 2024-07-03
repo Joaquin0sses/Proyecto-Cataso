@@ -8,38 +8,9 @@
     require 'base-paginas.php';
 
     ?>
-    <!-- J Query -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Verificar si hay datos en el localStorage al cargar la página
-            const datos = JSON.parse(localStorage.getItem('nuevaFila'));
-            if (datos) {
-                // Añadir la nueva fila a la tabla
-                $("#vehiculos tbody").append(
-                    `<tr>
-                        <td><input class="form-check-input" type="checkbox"></td>
-                        <td>${datos.modelo}</td>
-                        <td>${datos.patente}</td>
-                        <td>${datos.kilometraje}</td>
-                        <td>${datos.capacidad_personas}</td>
-                        <td>${datos.capacidad_transporte}</td>
-                        <td>${datos.estado}</td>
-                        
-                    </tr>`
-                );
-                // Limpiar el localStorage
-                localStorage.removeItem('nuevaFila');
-            }
-
-            // Redirigir al formulario
-            $("#agregar").click(function(){
-                window.location.href = 'agregar_vehiculos.html';
-            });
-        });
-    </script>
+    
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>Gestor de Rutas</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -65,6 +36,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1XFUG4cI94Kdq36I_lWHhz3FJNSNCPgg&libraries=places"></script>
 </head>
 
 <body>
@@ -76,98 +51,61 @@
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-
-                    <div class="wrapper">
-                        <div class="container-calendar">
-                            <div id="left">
-                                <h1>Departures and arrivals</h1>
-                                <div id="event-section">
-                                    <h3>Añadir evento</h3>
-                                    <input type="date" id="eventDate">
-                                    <input type="text"
-                                        id="eventTitle"
-                                        placeholder="Event Title">
-                                    <input type="text"
-                                        id="eventDescription"
-                                        placeholder="Event Description">
-                                    <button id="addEvent" onclick="addEvent()">
-                                        Add
-                                    </button>
-                                </div>
-                                <div id="reminder-section">
-                                    <h3>Recordatorios</h3>
-                                    <!-- List to display reminders -->
-                                    <ul id="reminderList">
-                                        <li data-event-id="1">
-                                            <strong>Event Title</strong>
-                                            - Event Description on Event Date
-                                            <button class="delete-event"
-                                                onclick="deleteEvent(1)">
-                                                Delete
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div id="right">
-                                <h3 id="monthAndYear"></h3>
-                                <div class="button-container-calendar">
-                                    <button id="previous"
-                                            onclick="previous()">
-                                        ‹
-                                    </button>
-                                    <button id="next"
-                                            onclick="next()">
-                                        ›
-                                    </button>
-                                </div>
-                                <table class="table-calendar"
-                                    id="calendar"
-                                    data-lang="en">
-                                    <thead id="thead-month"></thead>
-                                    <!-- Table body for displaying the calendar -->
-                                    <tbody id="calendar-body"></tbody>
-                                </table>
-                                <div class="footer-container-calendar">
-                                    <label for="month">Jump To: </label>
-                                    <!-- Dropdowns to select a specific month and year -->
-                                    <select id="month" onchange="jump()">
-                                        <option value=0>Jan</option>
-                                        <option value=1>Feb</option>
-                                        <option value=2>Mar</option>
-                                        <option value=3>Apr</option>
-                                        <option value=4>May</option>
-                                        <option value=5>Jun</option>
-                                        <option value=6>Jul</option>
-                                        <option value=7>Aug</option>
-                                        <option value=8>Sep</option>
-                                        <option value=9>Oct</option>
-                                        <option value=10>Nov</option>
-                                        <option value=11>Dec</option>
-                                    </select>
-                                    <!-- Dropdown to select a specific year -->
-                                    <select id="year" onchange="jump()"></select>
-                                </div>
-                            </div>
-                        </div>
+                <h1>Gestor de Rutas</h1>
+                <form id="route-form" action="calculate.php" method="POST">
+                    <div class="form-group">
+                        <label for="origin">Lugar de Origen:</label>
+                        <input type="text" id="origin" name="origin" required>
                     </div>
-                    
-                    <script src="./calendar_script.js"></script>
-                    
-                    
-                    <div class="bg-light text-center rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Generador de rutas</h6>
-                        </div>
-                        <div class="container-fluid full-height d-flex flex-column">
-                            <iframe src="map_test.html" style="border:none; width:100%; height:300px;" ></iframe>
-                        </div>
-                        
+                    <div class="form-group">
+                        <label for="destination">Destino:</label>
+                        <input type="text" id="destination" name="destination" required>
                     </div>
-                            
-                        </div>
-                        <!-- Widgets End -->
-                        
+                    <div class="form-group">
+                        <label for="departure-time">Hora de Salida:</label>
+                        <input type="time" id="departure-time" name="departure-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-date">Día:</label>
+                        <input type="date" id="departure-date" name="departure-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rest-mode">Modo de Viaje:</label>
+                        <select id="rest-mode" name="rest-mode" required>
+                            <option value="normal">Normal</option>
+                            <option value="4h-drive-2h-rest">4 horas de manejo y 2 horas de descanso</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toll-cost">Costo del Peaje (CLP):</label>
+                        <input type="number" id="toll-cost" name="toll-cost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="driver-cost">Costo del Conductor por Hora (CLP):</label>
+                        <input type="number" id="driver-cost" name="driver-cost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel-efficiency">Eficiencia de Combustible (Km/L):</label>
+                        <input type="number" id="fuel-efficiency" name="fuel-efficiency" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel-cost">Costo de la Gasolina (CLP/L):</label>
+                        <input type="number" id="fuel-cost" name="fuel-cost" required>
+                    </div>
+                    <button type="submit">Calcular Ruta</button>
+                </form>
+                <div id="map"></div>
+                <div id="output">
+                    <h2>Detalles de la Ruta</h2>
+                    <p id="distance"></p>
+                    <p id="duration"></p>
+                    <p id="rest-info"></p>
+                    <p id="toll-info"></p>
+                    <p id="driver-cost-info"></p>
+                    <p id="fuel-cost-info"></p>
+                    <p id="total-cost-info"></p>
+                </div>
+                <script src="script-rutas2.js"></script>
 
                         <!-- Footer Start -->
                         <div class="container-fluid pt-4 px-4">

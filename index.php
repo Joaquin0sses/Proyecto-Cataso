@@ -51,8 +51,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Gasto en bencina</p>
+                                <h6 class="mb-0">$400000</h6>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Ganancias</p>
+                                <h6 class="mb-0">$500000</h6>
                             </div>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Vencina ahorrada</p>
+                                <h6 class="mb-0">$50000</h6>
                             </div>
                         </div>
                     </div>
@@ -78,8 +78,8 @@
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">Vehiculos en circulacion</p>
+                                <h6 class="mb-0">47%</h6>
                             </div>
                         </div>
                     </div>
